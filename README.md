@@ -176,6 +176,18 @@ DurationFactor = DisruptionHours / 24
 
 ---
 
+<h2>📄 Detailed Documentation</h2>
+
+<p>
+👉 Explore the complete system design, modules, and mathematical models:
+</p>
+
+<ul>
+  <li>📘 <a href="docs/QuickCommerce-InsuranceAI-Idea-Document.pdf" target="_blank">
+    Phase-1 Idea Document
+  </a></li>
+</ul>
+
 ## Project Structure
 
 parametric-insurance/
