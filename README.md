@@ -188,6 +188,8 @@ DurationFactor = DisruptionHours / 24
   </a></li>
 </ul>
 
+---
+
 ## Project Structure
 
 parametric-insurance/
