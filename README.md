@@ -192,7 +192,7 @@ DurationFactor = DisruptionHours / 24
 
 ## Project Structure
 
-parametric-insurance/
+QuickCommerce-InsuranceAI/
 ├── docs/  
 ├── src/  
 ├── backend/  
