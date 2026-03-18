@@ -13,9 +13,16 @@ Protecting Quick Commerce Delivery Partners from Income Loss
 
 ## Problem
 
-Delivery partners in quick commerce platforms (Blinkit, Zepto, etc.) face income loss due to external disruptions such as heavy rain, traffic congestion, extreme heat, and platform outages.
+Quick commerce delivery partners (Blinkit, Zepto, Instamart) face **unexpected income loss** due to real-world disruptions such as:
 
-These disruptions are unpredictable and uncontrollable, yet workers have no structured income protection system.
+- Heavy rain 🌧️  
+- Floods 🚧  
+- Extreme heat 🌡️  
+- Pollution 🏭  
+- Traffic congestion 🚗  
+- Dark store shutdowns 🏬  
+
+Currently, there is **no automated system** to compensate them for these disruptions.
 
 ---
 
