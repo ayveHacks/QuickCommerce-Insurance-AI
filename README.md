@@ -15,12 +15,12 @@ Protecting Quick Commerce Delivery Partners from Income Loss
 
 Quick commerce delivery partners (Blinkit, Zepto, Instamart) face **unexpected income loss** due to real-world disruptions such as:
 
-- Heavy rain 🌧️  
-- Floods 🚧  
-- Extreme heat 🌡️  
-- Pollution 🏭  
-- Traffic congestion 🚗  
-- Dark store shutdowns 🏬  
+- Heavy rain   
+- Floods 
+- Extreme heat   
+- Pollution 
+- Traffic congestion   
+- Dark store shutdowns  
 
 Currently, there is **no automated system** to compensate them for these disruptions.
 
@@ -179,15 +179,15 @@ DurationFactor = DisruptionHours / 24
 <h2>📄 Detailed Documentation</h2>
 
 <p>
-📌 Explore complete system design and mathematical models:
+Explore complete system design and mathematical models:
 </p>
 
 <ul>
-  <li>📘 <a href="docs/QuickCommerce-InsuranceAI-Idea-Document.pdf" target="_blank">
+  <li><a href="docs/QuickCommerce-InsuranceAI-Idea-Document.pdf" target="_blank">
     Idea Document
   </a></li>
   
-  <li>📊 <a href="docs/QuickCommerce-InsuranceAI-Mathematical-Model.pdf" target="_blank">
+  <li><a href="docs/QuickCommerce-InsuranceAI-Mathematical-Model.pdf" target="_blank">
     Mathematical Models
   </a></li>
 </ul>
@@ -197,6 +197,7 @@ DurationFactor = DisruptionHours / 24
 ## Project Structure
 
 QuickCommerce-InsuranceAI/
+
 ├── docs/  
 ├── src/  
 ├── backend/  
