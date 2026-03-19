@@ -333,7 +333,7 @@ QuickCommerce-InsuranceAI/
 |-- src/
 |-- backend/
 |-- frontend/
-`-- README.md
+|-- README.md
 ```
 
 ---
