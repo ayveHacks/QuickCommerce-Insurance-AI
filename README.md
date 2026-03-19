@@ -179,42 +179,59 @@ To address emerging fraud risks such as GPS spoofing and coordinated claim attac
 
 ### 1. Differentiation: Genuine Worker vs Spoofed Actor
 
-Our system builds a **behavioral and contextual trust model** instead of relying only on GPS.
+Our system does not rely solely on GPS coordinates. Instead, it builds a **behavioral and contextual trust model** for each delivery partner.
 
-- Movement consistency analysis
-- Speed and route validation
-- Historical behavior matching
-- Order activity correlation
+We differentiate real vs spoofed cases using:
+
+- **Movement Consistency Analysis**
+  - Real workers show continuous movement patterns (routes, stops, delivery paths)
+  - Spoofed users show static or unrealistic jumps in location
+
+- **Speed & Route Validation**
+  - Compare movement with road network constraints (Google Maps data)
+  - Detect impossible speeds or non-road movement
+
+- **Historical Behavior Matching**
+  - Compare current activity with worker’s past patterns
+  - Sudden anomalies increase fraud probability
+
+- **Order Activity Correlation**
+  - Genuine workers show delivery lifecycle events (pickup → transit → drop)
+  - Spoofers lack real order execution signals
 
 ---
 
 ### 2. Data Signals Beyond GPS
 
-#### Device & Sensor Data
+The system uses multiple data sources to detect spoofing:
 
-- Accelerometer
-- Gyroscope
-- Network signal variation
+#### Device & Sensor Data
+- Accelerometer (movement detection)
+- Gyroscope (device orientation changes)
+- Network signal variation (cell tower changes)
 
 #### Network Data
-
-- IP vs GPS mismatch
-- VPN/proxy detection
+- IP address location vs GPS mismatch
+- Frequent IP switching detection
+- VPN/proxy usage signals
 
 #### Operational Data
-
-- Order logs
-- App activity
+- Order assignment and completion logs
+- App foreground/background activity
+- Time spent active in delivery app
 
 #### Environmental Correlation
-
-- Weather match
-- Traffic consistency
+- Compare reported location with:
+  - actual weather severity
+  - traffic conditions
+- Detect mismatch (e.g., user claims flood but area is normal)
 
 #### Group Fraud Detection
-
-- Cluster behavior
-- Coordinated claims
+- Detect clusters of workers:
+  - same location pattern
+  - same claim timing
+  - coordinated inactivity
+- Use anomaly detection to flag fraud rings
 
 ---
 
@@ -224,6 +241,63 @@ Our system builds a **behavioral and contextual trust model** instead of relying
 FRS = f(LocationConsistency, MovementPattern, DeviceSignals,
         NetworkSignals, OrderActivity, HistoricalBehavior)
 ```
+
+<h3>4. UX Balance: Fairness for Genuine Workers</h3>
+
+<p>To avoid penalizing honest workers:</p>
+
+<ul>
+  <li><b>Grace Threshold Handling</b>
+    <ul>
+      <li>Temporary network drops do not immediately reject claims</li>
+    </ul>
+  </li>
+
+  <li><b>Multi-Signal Validation</b>
+    <ul>
+      <li>No decision based on a single parameter</li>
+    </ul>
+  </li>
+
+  <li><b>Soft Flagging System</b>
+    <ul>
+      <li>Claims marked as "Under Review" instead of rejected</li>
+    </ul>
+  </li>
+
+  <li><b>Fallback Verification</b>
+    <ul>
+      <li>Worker can submit:</li>
+      <ul>
+        <li>App activity logs</li>
+        <li>Delivery screenshots</li>
+        <li>Manual confirmation</li>
+      </ul>
+    </ul>
+  </li>
+
+  <li><b>Delayed but Safe Payout</b>
+    <ul>
+      <li>Genuine claims may be slightly delayed, not denied</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>5. System Impact</h3>
+
+<p>This approach ensures:</p>
+
+<ul>
+  <li>Prevention of large-scale coordinated fraud</li>
+  <li>Protection of insurer liquidity</li>
+  <li>Fair treatment of honest workers</li>
+  <li>Robust, scalable fraud detection system</li>
+</ul>
+
+<p>
+By combining behavioral analytics, multi-source validation, and AI-based anomaly detection,
+the platform becomes resilient against adversarial attacks such as GPS spoofing.
+</p>
 
 ---
 
