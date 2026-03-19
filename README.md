@@ -167,7 +167,7 @@ If `WorkLossRatio >= 0.5`:
 
 ---
 
-### Phase 1 - Market Crash
+## Phase 1 - Market Crash
 
 ### Security & Fraud Prevention
 
@@ -241,6 +241,7 @@ The system uses multiple data sources to detect spoofing:
 FRS = f(LocationConsistency, MovementPattern, DeviceSignals,
         NetworkSignals, OrderActivity, HistoricalBehavior)
 ```
+--- 
 
 <h3>4. UX Balance: Fairness for Genuine Workers</h3>
 
@@ -282,6 +283,8 @@ FRS = f(LocationConsistency, MovementPattern, DeviceSignals,
     </ul>
   </li>
 </ul>
+
+--- 
 
 <h3>5. System Impact</h3>
 
