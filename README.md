@@ -179,12 +179,16 @@ DurationFactor = DisruptionHours / 24
 <h2>📄 Detailed Documentation</h2>
 
 <p>
-👉 Explore the complete system design, modules, and mathematical models:
+📌 Explore complete system design and mathematical models:
 </p>
 
 <ul>
   <li>📘 <a href="docs/QuickCommerce-InsuranceAI-Idea-Document.pdf" target="_blank">
-    Phase-1 Idea Document
+    Idea Document
+  </a></li>
+  
+  <li>📊 <a href="docs/QuickCommerce-InsuranceAI-Mathematical-Model.pdf" target="_blank">
+    Mathematical Models
   </a></li>
 </ul>
 
