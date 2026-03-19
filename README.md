@@ -163,6 +163,75 @@ Final Payout = DailyIncome × PayoutPercent × DurationFactor
 DurationFactor = DisruptionHours / 24  
 
 ---
+## Phase 1- Market Crash
+## Security & Fraud Prevention
+
+## Adversarial Defense & Anti-Spoofing Strategy
+
+To address emerging fraud risks such as GPS spoofing and coordinated claim attacks, our platform integrates a multi-layered AI-driven anti-spoofing system that goes beyond basic location verification.
+
+---
+
+### 1. Differentiation: Genuine Worker vs Spoofed Actor
+
+Our system builds a **behavioral and contextual trust model** instead of relying only on GPS.
+
+- Movement Consistency Analysis  
+- Speed & Route Validation  
+- Historical Behavior Matching  
+- Order Activity Correlation  
+
+---
+
+### 2. Data Signals Beyond GPS
+
+#### 📍 Device & Sensor Data
+- Accelerometer  
+- Gyroscope  
+- Network signal variation  
+
+#### 📡 Network Data
+- IP vs GPS mismatch  
+- VPN/proxy detection  
+
+#### 🚴 Operational Data
+- Order logs  
+- App activity  
+
+#### 🌍 Environmental Correlation
+- Weather match  
+- Traffic consistency  
+
+#### 👥 Group Fraud Detection
+- Cluster behavior  
+- Coordinated claims  
+
+---
+
+### 3. AI-Based Fraud Risk Scoring
+
+```text
+FRS = f(LocationConsistency, MovementPattern, DeviceSignals,
+        NetworkSignals, OrderActivity, HistoricalBehavior)
+
+Low Risk → Auto-approved
+Medium Risk → Review
+High Risk → Flagged
+
+4. UX Balance: Fairness for Genuine Workers
+Grace handling for network issues
+Multi-signal validation
+Soft flagging ("Under Review")
+Optional manual verification
+Delayed but safe payouts
+
+5. System Impact
+Prevents large-scale fraud
+Protects liquidity
+Ensures fairness
+Improves system robustness
+
+---
 
 ## Tech Stack
 
