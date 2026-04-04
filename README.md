@@ -1,343 +1,284 @@
-<h1 align="center">AI-Powered Parametric Insurance Platform</h1>
-<p align="center">
-Protecting Quick Commerce Delivery Partners from Income Loss
-</p>
+# GigProtect AI
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Phase-1-blue" />
-  <img src="https://img.shields.io/badge/Domain-InsurTech-orange" />
-  <img src="https://img.shields.io/badge/Model-Parametric-green" />
-</p>
+AI-powered parametric insurance platform for quick-commerce delivery partners (Blinkit, Zepto, Instamart).
 
----
+## What This Build Demonstrates
 
-## Problem
+- OTP-based worker registration/login
+- Real-time/simulated disruption monitoring every 15 minutes
+- AI risk + reliability scoring with required formulas
+- Dynamic premium and coverage policy generation
+- Zero-touch claim generation (no manual claim endpoint)
+- Instant payout simulation to UPI
+- Multi-layer fraud detection and fraud logs
+- Worker and admin dashboards with charts
 
-Quick commerce delivery partners (Blinkit, Zepto, Instamart) face **unexpected income loss** due to real-world disruptions such as:
+## Monorepo Structure
 
-- Heavy rain
-- Floods
-- Extreme heat
-- Pollution
-- Traffic congestion
-- Dark store shutdowns
+```text
+QuickCommerce-Insurance-AI/
+|-- backend/
+|   |-- app/
+|   |   |-- api/
+|   |   |   |-- deps.py
+|   |   |   `-- v1/
+|   |   |       |-- router.py
+|   |   |       `-- endpoints/
+|   |   |           |-- auth.py
+|   |   |           |-- worker.py
+|   |   |           |-- policy.py
+|   |   |           |-- disruption.py
+|   |   |           |-- admin.py
+|   |   |           `-- simulation.py
+|   |   |-- core/
+|   |   |   |-- config.py
+|   |   |   `-- security.py
+|   |   |-- db/
+|   |   |   |-- mongodb.py
+|   |   |   `-- indexes.py
+|   |   |-- services/
+|   |   |   |-- otp_service.py
+|   |   |   |-- risk_engine.py
+|   |   |   |-- premium_engine.py
+|   |   |   |-- policy_service.py
+|   |   |   |-- disruption_provider.py
+|   |   |   |-- monitoring_service.py
+|   |   |   |-- claim_engine.py
+|   |   |   |-- fraud_engine.py
+|   |   |   |-- analytics_service.py
+|   |   |   `-- seed_service.py
+|   |   |-- tasks/
+|   |   |   `-- scheduler.py
+|   |   |-- models/
+|   |   |-- utils/
+|   |   `-- main.py
+|   |-- scripts/
+|   |   |-- seed_demo_data.py
+|   |   `-- sample_workers.json
+|   |-- requirements.txt
+|   |-- .env.example
+|   `-- Dockerfile
+|-- frontend/
+|   |-- app/
+|   |   |-- page.tsx
+|   |   |-- worker/
+|   |   |   |-- page.tsx
+|   |   |   |-- claims/page.tsx
+|   |   |   `-- disruptions/page.tsx
+|   |   `-- admin/page.tsx
+|   |-- components/
+|   |   |-- ui/
+|   |   `-- charts/
+|   |-- lib/
+|   |-- types/
+|   |-- package.json
+|   |-- tailwind.config.ts
+|   |-- next.config.mjs
+|   |-- .env.local.example
+|   `-- Dockerfile
+|-- docs/
+|-- docker-compose.yml
+`-- README.md
+```
 
-Currently, there is **no automated system** to compensate them for these disruptions.
+## Mathematical Engines Implemented
 
----
+### Risk Engine
 
-## What We Don't Cover
+For 10 disruption types:
 
-As per problem constraints, this platform strictly excludes:
-
-- Health insurance
-- Life insurance
-- Accident coverage
-- Vehicle repairs
-
-The system focuses only on income loss protection.
-
----
-
-## Solution
-
-We propose a parametric insurance platform with a zero-touch payout system.
-
-- Real-time external data is monitored
-- No manual claims are required
-- Payouts are automatically triggered
-
-This ensures fast, transparent, and reliable compensation.
-
----
-
-## System Architecture
-
-<p align="center">
-  <img src="docs/architecture.png" width="700"/>
-</p>
-
----
-
-## Workflow
-
-<p align="center">
-  <img src="docs/workflow.png" width="700"/>
-</p>
-
-### Flow Summary
-
-1. Worker registers and provides profile and income data
-2. System computes risk and reliability scores
-3. Weekly premium and coverage are generated
-4. Policy is activated for a 7-day cycle
-5. System monitors real-time disruptions
-6. If conditions are satisfied, payout is triggered automatically
-
----
-
-## Disruption Monitoring
-
-The system continuously monitors:
-
-- Weather API
-- AQI API
-- Traffic API
-- Flood alerts
-- News signals
-
-Monitoring frequency: every 15 minutes.
-
----
-
-## Claim Evaluation Logic
-
-`WorkLossRatio = (ExpectedOrders - ActualOrders) / ExpectedOrders`
-
-- If `WorkLossRatio >= 0.5` -> Claim approved
-- Otherwise -> Claim rejected
-
----
-
-## Payout System
-
-- Zero-touch claim processing
-- Instant payout via UPI (simulated)
-- Real-time dashboard updates
-
----
-
-## Key Features
-
-- Weekly pricing aligned with gig economy
-- Dynamic premium calculation
-- Real-time disruption detection
-- Automated claim triggering
-- Fraud-resistant validation
-
----
-
-## AI/ML Integration
-
-- Risk prediction using historical disruption data
-- Dynamic pricing based on zone-level patterns
-- Fraud detection using anomaly detection:
-  - GPS spoofing detection
-  - Fake disruption claim detection
-
----
-
-## Mathematical Framework
-
-### Risk and Exposure
+- `P_rain = RainyDays / TotalDays`
+- `P_flood = FloodEvents / TimePeriod`
+- `P_traffic = CongestionHours / WorkingHours`
+- plus: heat, pollution, curfew, strike, store_outage, server_outage, power_outage
 
 `RiskScore = sum(P_i * W_i)`
 
 `ES = sum(P_i) / N`
 
----
-
 ### Reliability Score
 
 `RS = (ActivityScore + CompletionScore + WorkHistoryScore + FraudScore) / 4`
 
-`FraudScore = 1 - FraudFlags`
+- `ActivityScore = WeeklyWorkingHours / MaxHours`
+- `CompletionScore = CompletedOrders / AssignedOrders`
+- `WorkHistoryScore = min(ExperienceMonths / 24, 1)`
+- `FraudScore = 1 - FraudFlags`
 
----
+### Dynamic Premium and Coverage
 
-### Weekly Financial Model
+- `CF = 0.3 + (0.2 * RS) + (0.1 * ES)`
+- `CoverageAmount = WeeklyIncome * CF`
+- `BaseRate = 0.015 + (0.02 * RiskScore)`
+- `Premium = WeeklyIncome * CF * BaseRate * (1 + RiskScore)`
 
-CoverageFactor (CF):
+Enhancements:
 
-`CF = 0.3 + 0.2 * RS + 0.1 * ES`
+- If `RiskScore < 0.3`: premium down, coverage up
+- If `RiskScore > 0.6`: premium up, coverage up
 
-Weekly Premium:
+Policy constraints:
 
-`Premium = WeeklyIncome * CF * BaseRate * (1 + RiskScore)`
+- Duration: 7 days
+- Max claims per week: 8
+- Remaining coverage tracked after every approved payout
 
----
+### Zero-Touch Claims
 
-### Payout Logic
+- `ExpectedOrders = AvgOrdersPerHour * Duration`
+- `WorkLossRatio = (ExpectedOrders - ActualOrders) / ExpectedOrders`
+- Eligibility: `WorkLossRatio >= 0.5`
 
-If `WorkLossRatio >= 0.5`:
+Payout:
 
-`Final Payout = DailyIncome * PayoutPercent * DurationFactor`
+- `DailyIncome = WeeklyIncome / 7`
+- `PF = 0.8 + (0.2 * RS) + (0.1 * ES)`
+- `PayoutPercent = Severity * PF`
+- `DurationFactor = DurationHours / 24`
+- `Payout = DailyIncome * PayoutPercent * DurationFactor`
 
-`DurationFactor = DisruptionHours / 24`
+### Fraud Risk Score
 
----
+Signals included:
 
-## Phase 1 - Market Crash
+- GPS/location consistency
+- Speed validation
+- IP vs GPS mismatch
+- Activity mismatch
+- Historical anomaly
 
-### Security & Fraud Prevention
+`FRS = f(LocationConsistency, DeviceSignals, NetworkSignals, Activity)`
 
-### Adversarial Defense & Anti-Spoofing Strategy
+Rules:
 
-To address emerging fraud risks such as GPS spoofing and coordinated claim attacks, our platform integrates a multi-layered AI-driven anti-spoofing system that goes beyond basic location verification.
+- `FRS >= 0.8` -> blocked
+- `0.6 <= FRS < 0.8` -> under review
+- `< 0.6` -> approve and payout
 
----
+## Backend Setup (FastAPI + MongoDB)
 
-### 1. Differentiation: Genuine Worker vs Spoofed Actor
+1. Create virtual environment and install dependencies:
 
-Our system does not rely solely on GPS coordinates. Instead, it builds a **behavioral and contextual trust model** for each delivery partner.
-
-We differentiate real vs spoofed cases using:
-
-- **Movement Consistency Analysis**
-  - Real workers show continuous movement patterns (routes, stops, delivery paths)
-  - Spoofed users show static or unrealistic jumps in location
-
-- **Speed & Route Validation**
-  - Compare movement with road network constraints (Google Maps data)
-  - Detect impossible speeds or non-road movement
-
-- **Historical Behavior Matching**
-  - Compare current activity with worker’s past patterns
-  - Sudden anomalies increase fraud probability
-
-- **Order Activity Correlation**
-  - Genuine workers show delivery lifecycle events (pickup → transit → drop)
-  - Spoofers lack real order execution signals
-
----
-
-### 2. Data Signals Beyond GPS
-
-The system uses multiple data sources to detect spoofing:
-
-#### Device & Sensor Data
-- Accelerometer (movement detection)
-- Gyroscope (device orientation changes)
-- Network signal variation (cell tower changes)
-
-#### Network Data
-- IP address location vs GPS mismatch
-- Frequent IP switching detection
-- VPN/proxy usage signals
-
-#### Operational Data
-- Order assignment and completion logs
-- App foreground/background activity
-- Time spent active in delivery app
-
-#### Environmental Correlation
-- Compare reported location with:
-  - actual weather severity
-  - traffic conditions
-- Detect mismatch (e.g., user claims flood but area is normal)
-
-#### Group Fraud Detection
-- Detect clusters of workers:
-  - same location pattern
-  - same claim timing
-  - coordinated inactivity
-- Use anomaly detection to flag fraud rings
-
----
-
-### 3. AI-Based Fraud Risk Scoring
-
-```text
-FRS = f(LocationConsistency, MovementPattern, DeviceSignals,
-        NetworkSignals, OrderActivity, HistoricalBehavior)
-```
---- 
-
-<h3>4. UX Balance: Fairness for Genuine Workers</h3>
-
-<p>To avoid penalizing honest workers:</p>
-
-<ul>
-  <li><b>Grace Threshold Handling</b>
-    <ul>
-      <li>Temporary network drops do not immediately reject claims</li>
-    </ul>
-  </li>
-
-  <li><b>Multi-Signal Validation</b>
-    <ul>
-      <li>No decision based on a single parameter</li>
-    </ul>
-  </li>
-
-  <li><b>Soft Flagging System</b>
-    <ul>
-      <li>Claims marked as "Under Review" instead of rejected</li>
-    </ul>
-  </li>
-
-  <li><b>Fallback Verification</b>
-    <ul>
-      <li>Worker can submit:</li>
-      <ul>
-        <li>App activity logs</li>
-        <li>Delivery screenshots</li>
-        <li>Manual confirmation</li>
-      </ul>
-    </ul>
-  </li>
-
-  <li><b>Delayed but Safe Payout</b>
-    <ul>
-      <li>Genuine claims may be slightly delayed, not denied</li>
-    </ul>
-  </li>
-</ul>
-
---- 
-
-<h3>5. System Impact</h3>
-
-<p>This approach ensures:</p>
-
-<ul>
-  <li>Prevention of large-scale coordinated fraud</li>
-  <li>Protection of insurer liquidity</li>
-  <li>Fair treatment of honest workers</li>
-  <li>Robust, scalable fraud detection system</li>
-</ul>
-
-<p>
-By combining behavioral analytics, multi-source validation, and AI-based anomaly detection,
-the platform becomes resilient against adversarial attacks such as GPS spoofing.
-</p>
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| Frontend | React |
-| Backend | Flask |
-| Database | MongoDB |
-| APIs | Weather, Traffic, AQI |
-| Payments | UPI (Simulated) |
-
----
-
-## Detailed Documentation
-
-Explore complete system design and mathematical models:
-
-- [Idea Document](docs/QuickCommerce-InsuranceAI-Idea-Document.pdf)
-- [Mathematical Models](docs/QuickCommerce-InsuranceAI-Mathematical-Model.pdf)
-
----
-
-## Project Structure
-
-```text
-QuickCommerce-InsuranceAI/
-|-- docs/
-|-- src/
-|-- backend/
-|-- frontend/
-|-- README.md
+```bash
+cd backend
+python -m venv .venv
+# Windows PowerShell:
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
 
----
+2. Configure environment:
 
-## Vision
+```bash
+copy .env.example .env
+```
 
-To build a scalable, automated financial safety net for gig workers using data-driven parametric insurance principles.
+3. Run backend:
+
+```bash
+uvicorn app.main:app --reload --port 8000
+```
+
+Backend docs:
+
+- Swagger: [http://localhost:8000/docs](http://localhost:8000/docs)
+
+## Frontend Setup (Next.js + TypeScript + Tailwind)
+
+1. Install dependencies:
+
+```bash
+cd frontend
+npm install
+```
+
+2. Configure env:
+
+```bash
+copy .env.local.example .env.local
+```
+
+3. Run frontend:
+
+```bash
+npm run dev
+```
+
+Open:
+
+- [http://localhost:3000](http://localhost:3000)
+
+## Docker Setup
+
+From repository root:
+
+```bash
+docker compose up --build
+```
+
+Services:
+
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend: [http://localhost:8000](http://localhost:8000)
+- MongoDB: `mongodb://localhost:27017`
+
+## End-to-End Demo Flow
+
+1. Open Admin dashboard (`/admin`) and click `Seed Demo Data`.
+2. Go to Worker dashboard (`/worker`).
+3. Use sample phone (for example `9000000001`) and click `Request OTP`.
+4. Use returned simulation OTP to login.
+5. Worker dashboard shows active policy, risk, premium, coverage, disruptions, and claims.
+6. In Admin, click `Run Monitoring Now` or trigger a manual disruption.
+7. Claims are auto-created. Eligible + low-FRS claims show payout notifications:
+   - `INSTANT PAYOUT: Rs XXX credited to UPI ...`
+
+## Key API Endpoints
+
+### Auth
+
+- `POST /api/v1/auth/request-otp`
+- `POST /api/v1/auth/register`
+- `POST /api/v1/auth/login`
+
+### Worker
+
+- `GET /api/v1/workers/me`
+- `GET /api/v1/workers/me/dashboard`
+- `GET /api/v1/workers/me/claims`
+- `GET /api/v1/workers/me/disruptions`
+
+### Policy
+
+- `GET /api/v1/policies/me/active`
+- `POST /api/v1/policies/me/refresh`
+
+### Monitoring and Simulation
+
+- `POST /api/v1/simulation/seed`
+- `POST /api/v1/simulation/run-monitoring`
+- `POST /api/v1/simulation/trigger-disruption`
+
+### Admin
+
+- `GET /api/v1/admin/metrics`
+- `GET /api/v1/admin/disruption-analytics`
+- `GET /api/v1/admin/fraud-alerts`
+- `GET /api/v1/admin/claims`
+- `POST /api/v1/admin/run-monitoring`
+
+## Notes
+
+- Manual claim submission is intentionally not implemented to enforce zero-touch claims.
+- External API keys are optional. If unavailable, robust simulation mode is used.
+- Scheduler runs every 15 minutes by default (`SCHEDULER_INTERVAL_MINUTES`).
+
+## Future Improvements
+
+- Add real OTP provider and payment rails
+- Add role-based admin auth and audit trails
+- Use Kafka/Celery for high-throughput asynchronous processing
+- Add online ML models for risk and fraud drift detection
+- Multi-city geospatial scaling with zone clustering and stream processing
+- Policy underwriting experiments with reinforcement learning
+

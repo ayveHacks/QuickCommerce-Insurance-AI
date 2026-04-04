@@ -22,6 +22,15 @@ Thumbs.db
 # Build folders
 dist/
 build/
+.next/
+frontend/.next/
+
+# Python virtual environments
+.venv/
+backend/.venv/
+
+# Local envs
+frontend/.env.local
 
 # Temporary files
 *.tmp
@@ -38,3 +47,4 @@ coverage/
 
 # Windows files
 desktop.ini
+
